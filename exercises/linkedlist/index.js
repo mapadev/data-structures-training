@@ -149,7 +149,25 @@ class LinkedList {
         previousNode.next = new Node(data, previousNode.next);
     }
 
-    forEach() {}
+    forEach(fn) {
+        let currentNode = this.head;
+
+        while (currentNode) {
+            fn(currentNode);
+
+            currentNode = currentNode.next;
+        }
+    }
+
+    *[Symbol.iterator]() {
+        let currentNode = this.head;
+
+        while (currentNode) {
+            yield currentNode;
+
+            currentNode = currentNode.next;
+        }
+    }
 }
 
 module.exports = { Node, LinkedList };
