@@ -26,13 +26,40 @@ class Node {
 }
 
 class Tree {
-    constructor(root = null) {
-        this.root = root;
+    constructor() {
+        this.root = null;
     }
 
-    traversBF(fn) {}
+    // traverseBF(fn) {
+    //     const nodeList = [];
+    //     nodeList.push(this.root);
 
-    traversDF(fn) {}
+    //     while (nodeList[0]) {
+    //         const node = nodeList.shift();
+    //         nodeList.push(...node.children);
+    //         fn(node);
+    //     }
+    // }
+
+    traverseBF(fn) {
+        const arr = [this.root];
+
+        while (arr.length) {
+            const node = arr.shift();
+            arr.push(...node.children);
+            fn(node);
+        }
+    }
+
+    traverseDF(fn) {
+        const arr = [this.root];
+
+        while (arr.length) {
+            const node = arr.shift();
+            arr.unshift(...node.children);
+            fn(node);
+        }
+    }
 }
 
 module.exports = { Tree, Node };
